@@ -1,3 +1,18 @@
 [gd_scene format=3 uid="uid://bunyohpobvu8b"]
 
 [node name="root" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+offset_left = 32.0
+offset_top = 11.0
+offset_right = 258.0
+offset_bottom = 161.0
+
+[node name="Label" type="Label" parent="."]
+offset_top = 53.0
+offset_right = 105.0
+offset_bottom = 82.0
+text = "Create Nodes
+"
