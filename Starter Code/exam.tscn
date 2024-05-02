@@ -1,12 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bunyohpobvu8b"]
+[gd_scene load_steps=8 format=3 uid="uid://bunyohpobvu8b"]
 
-[ext_resource type="Texture2D" uid="uid://rb8smo0f45mc" path="res://icon.svg" id="1_pf4ia"]
+[ext_resource type="Texture2D" uid="uid://csfstyjj1bcb6" path="res://sprites/bomb.png" id="1_svlrl"]
 [ext_resource type="Script" path="res://spawner.gd" id="2_7ljy3"]
 [ext_resource type="PackedScene" uid="uid://bwi6lmhwtpkeh" path="res://block.tscn" id="3_tiih5"]
 [ext_resource type="Script" path="res://Sound.gd" id="4_n7c7r"]
 [ext_resource type="AudioStream" uid="uid://daeeqhtb2f8cn" path="res://sounds/Explosion31.wav" id="5_qmb3q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jed6g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3nl4"]
+size = Vector2(1021.5, 127)
 
 [node name="root" type="Node2D"]
 
@@ -56,8 +59,8 @@ mass = 5.0
 shape = SubResource("RectangleShape2D_jed6g")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/CollisionShape2D"]
-position = Vector2(70, 153)
-texture = ExtResource("1_pf4ia")
+position = Vector2(95, 152)
+texture = ExtResource("1_svlrl")
 
 [node name="Sound" type="Control" parent="."]
 layout_mode = 3
@@ -81,10 +84,18 @@ offset_right = -274.0
 offset_bottom = 62.0
 
 [node name="spawner" type="Node2D" parent="."]
-visible = false
 modulate = Color(1, 0, 1, 1)
 self_modulate = Color(0.807843, 0.560784, 0.47451, 1)
 script = ExtResource("2_7ljy3")
 thing = ExtResource("3_tiih5")
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(221, 221)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(292, 239)
+shape = SubResource("RectangleShape2D_n3nl4")
+
+[connection signal="pressed" from="Button" to="spawner" method="_on_button_pressed"]
 [connection signal="pressed" from="Sound/Button" to="Sound" method="_on_button_pressed"]
+[connection signal="pressed" from="Sound/Button" to="spawner" method="_on_button_pressed"]
