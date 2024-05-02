@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bunyohpobvu8b"]
+[gd_scene load_steps=7 format=3 uid="uid://bunyohpobvu8b"]
 
 [ext_resource type="Texture2D" uid="uid://rb8smo0f45mc" path="res://icon.svg" id="1_pf4ia"]
 [ext_resource type="Script" path="res://spawner.gd" id="2_7ljy3"]
 [ext_resource type="PackedScene" uid="uid://bwi6lmhwtpkeh" path="res://block.tscn" id="3_tiih5"]
+[ext_resource type="Script" path="res://Area2D.gd" id="4_2x2jo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdkor"]
 size = Vector2(130, 123)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0h2v2"]
 
 [node name="root" type="Node2D"]
 
@@ -52,14 +55,23 @@ position = Vector2(6, 172)
 texture = ExtResource("1_pf4ia")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Node2D/Sprite2D"]
+position = Vector2(189, -39)
 disable_mode = 1
-gravity_scale = 3.07
+mass = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/RigidBody2D"]
-position = Vector2(1, -1)
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-187, 37)
 shape = SubResource("RectangleShape2D_hdkor")
+debug_color = Color(0, 0.329412, 0.443137, 0)
 
 [node name="spawner" type="Node2D" parent="Node2D/Sprite2D"]
 position = Vector2(-67, -177)
 script = ExtResource("2_7ljy3")
 thing = ExtResource("3_tiih5")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("4_2x2jo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0h2v2")
