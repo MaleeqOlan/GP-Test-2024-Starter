@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bunyohpobvu8b"]
+[gd_scene load_steps=4 format=3 uid="uid://bunyohpobvu8b"]
 
 [ext_resource type="Texture2D" uid="uid://rb8smo0f45mc" path="res://icon.svg" id="1_pf4ia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jed6g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdvgy"]
+size = Vector2(165, 72)
 
 [node name="root" type="Node2D"]
 
@@ -54,3 +57,14 @@ shape = SubResource("RectangleShape2D_jed6g")
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/CollisionShape2D"]
 position = Vector2(70, 153)
 texture = ExtResource("1_pf4ia")
+
+[node name="MobDetecter" type="Area2D" parent="."]
+position = Vector2(224, 65)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MobDetecter"]
+position = Vector2(-143, 542)
+shape = SubResource("RectangleShape2D_rdvgy")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="body_shape_entered" from="MobDetecter" to="RigidBody2D/CollisionShape2D/Sprite2D" method="_on_mob_detecter_body_shape_entered"]

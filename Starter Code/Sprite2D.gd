@@ -13,3 +13,7 @@ func _input(event):
 		##var tween = create_tween().set_trans(Tween.TRANS_CIRC)
 		##tween.tween_property($"../block", "global_position", event.position, 1.0)
 	pass
+
+
+func _on_mob_detecter_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	pass # Replace with function body.
