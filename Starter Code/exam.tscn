@@ -1,46 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://bunyohpobvu8b"]
+[gd_scene load_steps=6 format=3 uid="uid://bunyohpobvu8b"]
 
 [ext_resource type="Texture2D" uid="uid://rb8smo0f45mc" path="res://icon.svg" id="1_pf4ia"]
 [ext_resource type="Script" path="res://spawner.gd" id="2_7ljy3"]
 [ext_resource type="PackedScene" uid="uid://bwi6lmhwtpkeh" path="res://block.tscn" id="3_tiih5"]
-[ext_resource type="Script" path="res://Area2D.gd" id="4_2x2jo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdkor"]
-size = Vector2(130, 123)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6yihu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0h2v2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnq0b"]
 
 [node name="root" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HSlider" type="HSlider" parent="CanvasLayer"]
-offset_left = 66.0
-offset_right = 292.0
-offset_bottom = 31.0
-
-[node name="Label" type="Label" parent="."]
-offset_top = 53.0
-offset_right = 105.0
-offset_bottom = 82.0
-text = "Create Nodes
-"
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 302.0
-offset_top = 3.0
-offset_right = 407.0
-offset_bottom = 32.0
-text = "0
-"
-
-[node name="Label3" type="Label" parent="."]
+[node name="Label3" type="Label" parent="CanvasLayer"]
 offset_left = -1.0
 offset_top = 3.0
 offset_right = 104.0
 offset_bottom = 32.0
 text = "Count
 "
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 288.0
+offset_top = 2.0
+offset_right = 393.0
+offset_bottom = 31.0
+text = "0
+"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_top = 53.0
+offset_right = 105.0
+offset_bottom = 82.0
+text = "Create Nodes
+"
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+offset_left = 66.0
+offset_right = 283.0
+offset_bottom = 31.0
+value = 20.0
 
 [node name="Button" type="Button" parent="."]
 offset_top = 52.0
@@ -54,24 +53,15 @@ position = Vector2(61, 5)
 position = Vector2(6, 172)
 texture = ExtResource("1_pf4ia")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Node2D/Sprite2D"]
-position = Vector2(189, -39)
-disable_mode = 1
-mass = 5.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/RigidBody2D"]
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(-187, 37)
-shape = SubResource("RectangleShape2D_hdkor")
-debug_color = Color(0, 0.329412, 0.443137, 0)
-
 [node name="spawner" type="Node2D" parent="Node2D/Sprite2D"]
 position = Vector2(-67, -177)
 script = ExtResource("2_7ljy3")
 thing = ExtResource("3_tiih5")
 
-[node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("4_2x2jo")
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2D/Sprite2D"]
+disable_mode = 2
+mass = 5.0
+physics_material_override = SubResource("PhysicsMaterial_6yihu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_0h2v2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/RigidBody2D"]
+shape = SubResource("RectangleShape2D_xnq0b")
