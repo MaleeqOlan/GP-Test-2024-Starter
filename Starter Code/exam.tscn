@@ -1,24 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://bunyohpobvu8b"]
+[gd_scene load_steps=6 format=3 uid="uid://bunyohpobvu8b"]
 
 [ext_resource type="Texture2D" uid="uid://rb8smo0f45mc" path="res://icon.svg" id="1_pf4ia"]
+[ext_resource type="Script" path="res://spawner.gd" id="2_7ljy3"]
+[ext_resource type="PackedScene" uid="uid://bwi6lmhwtpkeh" path="res://block.tscn" id="3_tiih5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hdkor"]
+size = Vector2(130, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbsad"]
 
 [node name="root" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HSlider" type="HSlider" parent="CanvasLayer"]
-offset_left = -1.0
-offset_top = -52.0
-offset_right = 225.0
-offset_bottom = 98.0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 227.0
+offset_bottom = 35.0
 
 [node name="Label" type="Label" parent="."]
 offset_top = 53.0
 offset_right = 105.0
 offset_bottom = 82.0
 text = "Create Nodes
+"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 246.0
+offset_top = 7.0
+offset_right = 351.0
+offset_bottom = 36.0
+text = "0
 "
 
 [node name="Button" type="Button" parent="."]
@@ -34,6 +47,21 @@ position = Vector2(6, 172)
 texture = ExtResource("1_pf4ia")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Node2D/Sprite2D"]
+disable_mode = 1
+gravity_scale = 3.07
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/RigidBody2D"]
+position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_hdkor")
+
+[node name="spawner" type="Node2D" parent="Node2D/Sprite2D"]
+position = Vector2(-67, -177)
+script = ExtResource("2_7ljy3")
+thing = ExtResource("3_tiih5")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Node2D/Sprite2D/spawner"]
+mass = 0.01
+gravity_scale = -2.075
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/spawner/RigidBody2D"]
+shape = SubResource("RectangleShape2D_nbsad")
