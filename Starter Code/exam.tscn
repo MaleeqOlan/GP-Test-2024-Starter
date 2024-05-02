@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bunyohpobvu8b"]
+[gd_scene load_steps=3 format=3 uid="uid://bunyohpobvu8b"]
 
 [ext_resource type="Texture2D" uid="uid://rb8smo0f45mc" path="res://icon.svg" id="1_pf4ia"]
-[ext_resource type="Script" path="res://spawner.gd" id="2_7ljy3"]
-[ext_resource type="PackedScene" uid="uid://bwi6lmhwtpkeh" path="res://block.tscn" id="3_tiih5"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6yihu"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnq0b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jed6g"]
 
 [node name="root" type="Node2D"]
 
@@ -49,19 +45,12 @@ offset_bottom = 82.0
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(61, 5)
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-position = Vector2(6, 172)
-texture = ExtResource("1_pf4ia")
-
-[node name="spawner" type="Node2D" parent="Node2D/Sprite2D"]
-position = Vector2(-67, -177)
-script = ExtResource("2_7ljy3")
-thing = ExtResource("3_tiih5")
-
-[node name="RigidBody2D" type="RigidBody2D" parent="Node2D/Sprite2D"]
-disable_mode = 2
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
 mass = 5.0
-physics_material_override = SubResource("PhysicsMaterial_6yihu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/RigidBody2D"]
-shape = SubResource("RectangleShape2D_xnq0b")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_jed6g")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/CollisionShape2D"]
+position = Vector2(70, 153)
+texture = ExtResource("1_pf4ia")
